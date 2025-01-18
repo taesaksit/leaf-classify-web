@@ -11,10 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet"/>
-    <style>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet"/>     <style>
       * {
-        font-family: "Kanit", sans-serif;
+        font-family: 'Kanit', sans-serif;
       }
       #particles-js {
         position: absolute;
@@ -83,25 +82,25 @@
       <div
         class="max-w-4xl mx-auto bg-white/10  rounded-xl p-4 mb-4 bg-gray-200"
       >
-        <div class="grid grid-cols-3 gap-4 text-black">
+        <div class="grid grid-cols-2 gap-4 text-black">
           <div>
-            <h4 class="text-center font-semibold mb-2">ต้นฉบับ (RGB)</h4>
+            <h4 class="text-center font-semibold mb-2">RGB</h4>
             <img
               src="{{ image_path}}"
               class="w-full aspect-square object-cover rounded-md"
               alt="ใบองุ่น"
             />
           </div>
-          <div>
-            <h4 class="text-center font-semibold mb-2">Grayscale</h4>
+          <!-- <div>
+            <h4 class="text-center font-semibold mb-2">เกลสเ</h4>
             <img
               src="{{ image_gray_path}}"
               class="w-full aspect-square object-cover rounded-md"
               alt="ใบองุ่น"
             />
-          </div>
+          </div> -->
           <div>
-            <h4 class="text-center font-semibold mb-2">Detection</h4>
+            <h4 class="text-center font-semibold mb-2">Recognition</h4>
             <img
               src="{{ image_detected}}"
               class="w-full aspect-square object-cover rounded-md"
@@ -110,8 +109,8 @@
           </div>
         </div>
         <div class="mt-4 text-black">
-          <h3 class="text-xl mb-2">ผลการวิเคราะห์: {{ pred }}</h3>
-          <p class="text-sm">จำนวนจุดที่ตรวจพบ: {{ count_detected }}</p>
+          <h2 class="text-xl mb-2">ผลการวิเคราะห์: {{ pred }}</h2>
+          <p class="text-xl">จำนวนจุดที่ตรวจพบ: {{ count_detected }}</p>
         </div>
       </div>
       {% endfor %} {% endif %}
