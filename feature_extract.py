@@ -31,7 +31,7 @@ def convolution(path):
 
 def convolution_from_nn(path):
     image = Image.open(path)
-    img2vec = Img2Vec()  # Instantiate the Img2Vec class
+    img2vec = Img2Vec()  
     result = img2vec.get_vec(image)
 
     return result
