@@ -1,13 +1,13 @@
-import pandas as pd
 import numpy as np
-import cv2
-from scipy.signal import convolve2d
-from sklearn.preprocessing import MinMaxScaler
+import pandas as pd
+
+modelDataFrame = pd.read_excel('/Users/tae/Desktop/WOA-Project @2025/model/model_dataset512.xlsx' ,header=None )
+model = modelDataFrame.to_numpy()
 
 import warnings
 warnings.filterwarnings('ignore')
 
-def predcit(data , model):
+def predcit(data):
 
     labels = {
         0:'Black_rot',
@@ -16,7 +16,6 @@ def predcit(data , model):
         3:'Healthy'
     }
 
-    labels[0]
-    data_clone = np.tile(data, (4, 1))
-    dis = np.sqrt(np.sum((model - data_clone) ** 2, axis=1))
-    return labels[np.argmin(dis)]
+    cloneData = np.tile(data, (4, 1))
+    distance = np.sqrt(np.sum((model - cloneData) ** 2, axis=1))
+    return labels[np.argmin(distance)]

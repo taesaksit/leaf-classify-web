@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request
-# from main import predict512, predict100
-from watershed import detection, detection2
-from PIL import Image
-import numpy as np
+from watershed import detection
+from prediction import predcit
+from feature_extract import convolution_from_nn
+
 import os.path
 import cv2
 
@@ -34,23 +34,21 @@ def predict():
     pathImage = os.path.join(folderRgb, imageFile.filename)
     imageFile.save(pathImage)
     
-    # แปลงรูปภาพเป็น Grayscale และบันทึกในโฟลเดอร์ gray
-    grayscale_image = Image.open(pathImage).convert('L')
-    pathImageGray = os.path.join(folderGray, f"gray_{imageFile.filename}")
-    grayscale_image.save(pathImageGray)
-    # Detect แล้วบันทึกโฟรเดอร์ detect
+    # Convolution
+    convoledImage = convolution_from_nn(pathImage)
+    predicted = predcit(convoledImage);
     detected_image, cout_detected= detection(pathImage)
     detected_image_rgb = cv2.cvtColor(detected_image, cv2.COLOR_BGR2RGB)
     pathImageDetected = os.path.join(folderDetect, f"detected_{imageFile.filename}")
     cv2.imwrite(pathImageDetected, detected_image_rgb)
-    # ผลการวิเคราะห์ (ตัวอย่าง)
-    prediction = "โรคราน้ำค้าง"
+
+
     
     # ส่งข้อมูลทั้งสองรูปกลับไปที่หน้าเว็บ
     return render_template(
         'index.html', 
         results=[
-            (prediction, pathImage, pathImageGray, pathImageDetected, cout_detected)
+            (predicted, pathImage, pathImageDetected, cout_detected)
         ]
     )
 
