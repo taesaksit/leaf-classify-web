@@ -8,4 +8,4 @@ A static web for leaf image classification using a whale optimization algorithm 
 ## Features
 
 - Leaf image classification 
-- Upload images and view classification results
+- Upload images and view classification detected
